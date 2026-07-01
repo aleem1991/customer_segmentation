@@ -7,3 +7,8 @@ scikit-learn
 openpyxl
 nbformat>=4.2.0
 ipykernel
+fastapi
+uvicorn
+pyyaml
+pytest
+httpx

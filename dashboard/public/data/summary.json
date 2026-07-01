@@ -1,0 +1,31 @@
+{
+  "total_customers": 4312,
+  "revenue_at_risk": 108704.41,
+  "risk_tiers": {
+    "High Risk": 1340,
+    "Medium Risk": 1966,
+    "Low Risk": 1006
+  },
+  "segment_distribution": {
+    "Potential Loyalists": 1763,
+    "Hibernating": 1737,
+    "Champions": 812
+  },
+  "segment_churn": {
+    "Hibernating": {
+      "total": 1737,
+      "high_risk": 1128,
+      "high_risk_pct": 0.6493955094991365
+    },
+    "Potential Loyalists": {
+      "total": 1763,
+      "high_risk": 207,
+      "high_risk_pct": 0.11741349971639252
+    },
+    "Champions": {
+      "total": 812,
+      "high_risk": 5,
+      "high_risk_pct": 0.006157635467980296
+    }
+  }
+}

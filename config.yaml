@@ -1,0 +1,28 @@
+paths:
+  raw_data: "data/raw/online_retail_II.xlsx"
+  clean_data: "data/processed/online_retail_clean.csv"
+  model: "models/churn_xgb_model.pkl"
+  segments: "data/processed/rfm_segments.csv"
+  predictions_report: "data/processed/churn_predictions_report.csv"
+  high_value_report: "data/processed/high_value_at_risk_customers.csv"
+
+parameters:
+  cutoff_offset_days: 90
+  recent_purchase_window_days: 60
+  single_order_imputation_days: 180.0
+  default_recent_orders_ratio: 0.3
+  default_is_uk: 1
+
+model_hyperparameters:
+  n_estimators: 150
+  learning_rate: 0.05
+  max_depth: 4
+  subsample: 0.8
+  colsample_bytree: 0.8
+  scale_pos_weight: 2.0
+  random_state: 42
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: true
