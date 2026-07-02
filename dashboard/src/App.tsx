@@ -10,6 +10,9 @@ import { SegmentBarChart } from './components/SegmentBarChart';
 import { CustomerTable } from './components/CustomerTable';
 import { CustomerDetails } from './components/CustomerDetails';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+const WS_BASE = API_BASE.replace('http://', 'ws://').replace('https://', 'wss://');
+
 interface SummaryData {
   total_customers: number;
   revenue_at_risk: number;
@@ -155,7 +158,7 @@ function App() {
       is_uk: Number(calcIsUk)
     };
 
-    fetch('http://127.0.0.1:8000/predict', {
+    fetch(`${API_BASE}/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -178,7 +181,7 @@ function App() {
   const checkModelDrift = () => {
     setDriftLoading(true);
     setDriftError(null);
-    fetch('http://127.0.0.1:8000/monitor')
+    fetch(`${API_BASE}/monitor`)
       .then(res => {
         if (!res.ok) throw new Error("FastAPI model service is offline. Please make sure the API server is running on port 8000.");
         return res.json();
@@ -197,7 +200,7 @@ function App() {
   const fetchShadowStats = () => {
     setShadowLoading(true);
     setShadowError(null);
-    fetch('http://127.0.0.1:8000/shadow_stats')
+    fetch(`${API_BASE}/shadow_stats`)
       .then(res => {
         if (!res.ok) throw new Error("FastAPI model service is offline. Please make sure the API server is running on port 8000.");
         return res.json();
@@ -223,7 +226,7 @@ function App() {
     }
 
     setWsStatus('connecting');
-    const ws = new WebSocket('ws://127.0.0.1:8000/ws/transactions');
+    const ws = new WebSocket(`${WS_BASE}/ws/transactions`);
     wsRef.current = ws;
 
     ws.onopen = () => {
@@ -301,7 +304,7 @@ function App() {
 
       await Promise.all(
         profiles.map(profile => 
-          fetch('http://127.0.0.1:8000/predict', {
+          fetch(`${API_BASE}/predict`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(profile)
