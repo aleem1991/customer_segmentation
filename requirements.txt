@@ -12,3 +12,7 @@ uvicorn
 pyyaml
 pytest
 httpx
+xgboost
+shap
+scipy
+websockets
