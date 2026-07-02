@@ -1,3 +1,13 @@
+---
+title: Churnflow API
+emoji: 📈
+colorFrom: green
+colorTo: emerald
+sdk: docker
+app_port: 8000
+pinned: false
+---
+
 🛒 Customer Segmentation & Churn Prediction
 ![alt text](https://img.shields.io/badge/Python-3.9-blue)
 ![alt text](https://img.shields.io/badge/Model-XGBoost-orange)
