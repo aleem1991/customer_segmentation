@@ -40,17 +40,25 @@ def load_models_and_data() -> None:
         logger.warning(f"Challenger model file missing at {CHALLENGER_PATH}.")
 
     # Load customer records into memory for live WebSocket streaming
-    if os.path.exists(CUSTOMERS_JSON_PATH):
+    cust_path = CUSTOMERS_JSON_PATH
+    if not os.path.exists(cust_path):
+        from src.api.config import project_root
+        cust_path = os.path.join(project_root, "data", "processed", "customers.json")
+    if not os.path.exists(cust_path):
+        from src.api.config import project_root
+        cust_path = os.path.join(project_root, "customers.json")
+
+    if os.path.exists(cust_path):
         try:
-            with open(CUSTOMERS_JSON_PATH, "r") as f:
+            with open(cust_path, "r") as f:
                 data = json.load(f)
                 for cust in data:
                     memory_customers[str(cust["id"])] = cust
-            logger.info(f"Successfully loaded {len(memory_customers)} customer records into memory for WebSocket streaming.")
+            logger.info(f"Successfully loaded {len(memory_customers)} customer records into memory from {cust_path}.")
         except Exception as e:
             logger.error(f"Failed to load customers.json into memory: {str(e)}")
     else:
-        logger.warning(f"customers.json missing at {CUSTOMERS_JSON_PATH}. WebSocket streaming fallback mock data will be used.")
+        logger.warning(f"customers.json missing. WebSocket streaming fallback mock data will be used.")
 
 def get_realtime_recommendation(recency: int, frequency: int, monetary: float, churn_prob: float) -> str:
     """Generates actionable retention strategy based on client segment classification."""
