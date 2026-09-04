@@ -3,4 +3,9 @@ node_modules/
 __pycache__/
 *.ipynb_checkpoints
 data/raw/*.xlsx
+data/processed/online_retail_clean.csv
+dashboard/
+models/
+*.pdf
+*.docx
 .DS_Store
