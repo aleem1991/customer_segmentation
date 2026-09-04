@@ -5,7 +5,8 @@ __pycache__/
 data/raw/*.xlsx
 data/processed/online_retail_clean.csv
 dashboard/
-models/
+models/*
+!models/.gitkeep
 *.pdf
 *.docx
 .DS_Store

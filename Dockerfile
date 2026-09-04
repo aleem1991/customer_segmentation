@@ -25,6 +25,7 @@ COPY src/ src/
 
 # Copy processed datasets and serialized models needed for server inference
 COPY data/processed/ data/processed/
+RUN mkdir -p models
 COPY models/ models/
 
 # Expose port (7860 is default for Hugging Face Spaces, 8000 for local)
