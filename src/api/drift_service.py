@@ -42,6 +42,11 @@ def run_drift_analysis() -> Dict[str, Any]:
     baseline_path = CLEANED_DATA_PATH
     if not os.path.exists(baseline_path):
         baseline_path = CONFIG["paths"]["clean_data"]
+    if not os.path.exists(baseline_path):
+        from src.api.config import project_root
+        baseline_path = os.path.join(project_root, "data", "processed", "churn_predictions_report.csv")
+    if not os.path.exists(baseline_path):
+        baseline_path = os.path.join(project_root, "data", "processed", "rfm_segments.csv")
         
     try:
         base_df = pd.read_csv(baseline_path)
