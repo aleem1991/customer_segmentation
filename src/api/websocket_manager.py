@@ -27,7 +27,7 @@ class WebSocketManager:
             while True:
                 # Select random customer
                 if not memory_customers:
-                    cust_id = "19999"
+                    cust_id = str(random.choice([14328, 17969, 12482, 15347, 13085, 14079, 16742, 15332, 15633, 13902]))
                     cust = {
                         "id": cust_id,
                         "recency": 45,
